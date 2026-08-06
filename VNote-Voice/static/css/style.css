@@ -1,0 +1,84 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #312e81
+    );
+
+    color:white;
+    min-height:100vh;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.glass-nav{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+}
+
+.hero-section{
+    padding:100px 20px;
+}
+
+.feature-card{
+
+    background:rgba(255,255,255,0.1);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    transition:0.4s;
+
+    height:100%;
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 35px rgba(
+        255,
+        255,
+        255,
+        0.15
+    );
+}
+
+.feature-icon{
+
+    font-size:70px;
+
+    color:#60a5fa;
+}
+
+.stat-card{
+
+    background:rgba(255,255,255,0.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-top:20px;
+}
+
+footer{
+
+    background:rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+    margin-top:50px;
+}

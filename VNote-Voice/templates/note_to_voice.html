@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notes To Audio | VNote</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    min-height:100vh;
+    background:linear-gradient(90deg,#081b3a,#1f2f5e);
+    color:white;
+}
+
+.page{
+    padding:40px;
+}
+
+.glass-box{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+}
+
+textarea{
+    resize:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark">
+
+<div class="container">
+
+<a href="/" class="navbar-brand fs-2 fw-bold">
+🎙️ VNote
+</a>
+
+<a href="/" class="btn btn-outline-light">
+Home
+</a>
+
+</div>
+
+</nav>
+
+<div class="container page">
+
+<h1 class="text-center mb-4">
+Notes → Audio
+</h1>
+
+<!-- INPUT SECTION -->
+
+<div class="glass-box">
+
+<h4>Input Notes</h4>
+
+<hr>
+
+<form
+action="/generate-audio"
+method="POST"
+enctype="multipart/form-data">
+
+<textarea
+name="text"
+class="form-control"
+rows="8"
+placeholder="Type your notes here..."></textarea>
+
+<div class="text-center my-3">
+<h5>OR</h5>
+</div>
+
+<input
+type="file"
+name="note_file"
+accept=".txt,.pdf,.docx"
+class="form-control">
+
+<small class="text-light">
+Supported formats: TXT, PDF, DOCX
+</small>
+
+<br>
+
+<label class="mb-2">
+Output Language
+</label>
+
+<select
+name="language"
+class="form-select">
+
+<option>English</option>
+<option>Telugu</option>
+<option>Hindi</option>
+<option>Tamil</option>
+<option>Kannada</option>
+<option>Malayalam</option>
+<option>Mixed Language</option>
+
+</select>
+
+<br>
+
+<label class="mb-2">
+Voice Type
+</label>
+
+<select
+name="voice"
+class="form-select">
+
+<option>AI Female</option>
+<option>AI Male</option>
+<option>Natural Voice</option>
+
+</select>
+
+<br>
+
+<button
+class="btn btn-success w-100">
+
+Generate Audio
+
+</button>
+
+</form>
+
+</div>
+
+<!-- OUTPUT SECTION -->
+
+<div class="glass-box mt-4">
+
+<h4>
+Generated Audio
+</h4>
+
+<hr>
+
+{% if audio_ready %}
+
+<p>
+<b>Language:</b> {{ language }}
+</p>
+
+<p>
+<b>Voice:</b> {{ voice }}
+</p>
+
+<audio controls class="w-100">
+
+<source src="{{ url_for('static', filename=audio_file) }}">
+
+</audio>
+
+<br><br>
+
+<div class="d-flex gap-2 flex-wrap">
+
+<form action="/save-audio-history" method="POST">
+
+<input type="hidden" name="text" value="{{ text }}">
+<input type="hidden" name="language" value="{{ language }}">
+<input type="hidden" name="audio_file" value="{{ audio_file }}">
+
+<button class="btn btn-primary">
+Save To History
+</button>
+
+</form>
+
+<a
+href="{{ url_for('static', filename=audio_file) }}"
+download
+class="btn btn-success">
+
+Download MP3
+
+</a>
+
+</div>
+
+{% else %}
+
+<p>
+No audio generated yet.
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>
