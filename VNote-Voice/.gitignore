@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Environment
+venv/
+
+# Whisper Models
+whisper_cache/
+*.pt
+
+# Generated Audio
+static/audio/*
+!static/audio/.gitkeep
+
+# Uploaded Files
+uploads/*
+!uploads/.gitkeep
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
