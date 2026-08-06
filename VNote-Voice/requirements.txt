@@ -1,0 +1,14 @@
+Flask
+Flask-MySQLdb
+SpeechRecognition
+openai-whisper
+gTTS
+langdetect
+deep-translator
+python-docx
+reportlab
+pydub
+Werkzeug
+openai-whisper
+langdetect
+deep-translator
